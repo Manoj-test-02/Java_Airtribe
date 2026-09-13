@@ -7,12 +7,17 @@ import com.airtribe.meditrack.entity.Patient;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class CSVUtil {
 
-    public static void createDoctorData (ArrayList<Doctor> doctors){
-        try(PrintWriter writer = new PrintWriter(new FileWriter(Constants.DOCTOR_CSV_PATH))) {
+    public static void createDoctorData (ArrayList<Doctor> doctors) throws IOException {
+        Path path = Paths.get(Constants.DOCTOR_CSV_PATH);
+        Files.createDirectories(path.getParent());
+        try(PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path))) {
             writer.println("id,firstName,lastName,mailId,phoneNo,speciality");
             for(Doctor doctor : doctors){
                 writer.println(doctor.getId() + "," +
@@ -28,8 +33,10 @@ public class CSVUtil {
         }
     }
 
-    public static  void createPatientData (ArrayList<Patient> patients){
-        try(PrintWriter writer = new PrintWriter(new FileWriter(Constants.PATIENT_CSV_PATH))){
+    public static  void createPatientData (ArrayList<Patient> patients) throws IOException {
+        Path path = Paths.get(Constants.PATIENT_CSV_PATH);
+        Files.createDirectories(path.getParent());
+        try(PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path))){
             writer.println("id,firstName,lastName,mailId,phoneNo");
             for(Patient patient : patients){
                 writer.println(patient.getId() + "," +

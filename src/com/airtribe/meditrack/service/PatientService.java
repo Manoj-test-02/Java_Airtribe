@@ -3,6 +3,7 @@ package com.airtribe.meditrack.service;
 import com.airtribe.meditrack.entity.Patient;
 import com.airtribe.meditrack.util.CSVUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PatientService {
@@ -60,7 +61,7 @@ public class PatientService {
         throw new Exception("Unable to find the Patient with ID: " +id);
     }
 
-    public static void savePatientstoCSV (){
+    public static void savePatientstoCSV () throws IOException {
         CSVUtil.createPatientData(patients);
     }
 }

@@ -5,6 +5,7 @@ import com.airtribe.meditrack.entity.Patient;
 import com.airtribe.meditrack.entity.Speciality;
 import com.airtribe.meditrack.util.CSVUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DoctorService {
@@ -50,7 +51,7 @@ public class DoctorService {
         return  foundDoctor;
     }
 
-    public static void saveDoctorstoCSV(){
+    public static void saveDoctorstoCSV() throws IOException {
         CSVUtil.createDoctorData(doctors);
     }
 
